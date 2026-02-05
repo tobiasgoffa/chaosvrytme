@@ -16,8 +16,14 @@
             <a href="index.html" class="logo-link" aria-label="Chaos v Rytme – domov">
                 <img src="logo.jpg" alt="Logo Chaos v Rytme" class="logo-img" />
             </a>
-            <nav class="main-nav">
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="main-nav" id="main-nav">
                 <a href="index.html">Domov</a>
+                <a href="#okapele">O kapele</a>
                 <a href="clenovia.html">Členovia</a>
                 <a href="hudba.html">Hudba</a>
                 <a href="#koncerty">Koncerty</a>
@@ -30,8 +36,29 @@
 <main>
     <h2>Vitaj v chaose!</h2>
     <p>
-        Sme punková kapela z Martina, ktorá mieša energiu, krik, rýchlosť a poriadnu dávku neónovej šialenosti.
-        Hudba je pre nás únik, protest a adrenalín. Vitaj na našom oficiálnom webe!
+        Chaos v Rytme je punk/hardcore kapela založená 20. marca 2022. Od začiatku hráme naplno – úprimne, 
+        hlučne a s poriadnou dávkou energie. Momentálne pracujeme na našom prvom albume s názvom Nejedz 
+        plastelínu a hľadáme koncerty, kde môžeme rozbiť stage a priniesť chaos.
+    </p>
+
+    <h2 id="okapele">O kapele</h2>
+    <p>
+        Sme <span class="highlight">Chaos v Rytme, punk/hardcore banda</span>, ktorá začala trieskať do strún a bicích <span class="highlight">20. marca 2022</span>. 
+        Odvtedy hráme s jasným cieľom – <span class="highlight">pustiť zo seba všetok bordel</span>, čo nosíme v hlave, a premeniť ho 
+        na <span class="highlight">energiu</span>, ktorú cíti každý pod pódiom.
+    </p>
+    <p>
+        Momentálne makáme na našom prvom albume s názvom <span class="highlight">„Nejedz plastelínu"</span> – pretože presne taký je 
+        punk: úprimný, trochu bláznivý a hlavne bez cenzúry. Chceme, aby naše songy zneli tak, ako ich 
+        cítime – <span class="highlight">surovo, nahlas a na plné gule</span>.
+    </p>
+    <p>
+        Keďže sme stále nová kapela, hľadáme koncerty a príležitosti <span class="highlight">rozbiť stage</span> kdekoľvek, kde je 
+        hlad po energii a hluku. Ak organizuješ akciu, ozvi sa nám – radi prinesieme <span class="highlight">chaos</span> aj k vám.
+    </p>
+    <p>
+        Ďakujeme každému, kto nás podporuje, sleduje a príde na koncert. Toto je len začiatok a 
+        veríme, že najväčší bordel ešte len príde.
     </p>
 
     <h2 id="koncerty">Najbližšie koncerty</h2>
@@ -82,3 +109,22 @@
 
 </body>
 </html>
+
+<script>
+    const hamburger = document.getElementById('hamburger');
+    const nav = document.getElementById('main-nav');
+
+    hamburger.addEventListener('click', function() {
+        hamburger.classList.toggle('active');
+        nav.classList.toggle('active');
+    });
+
+    // Zavrieť menu po kliknutí na odkaz
+    const navLinks = nav.querySelectorAll('a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            hamburger.classList.remove('active');
+            nav.classList.remove('active');
+        });
+    });
+</script>
