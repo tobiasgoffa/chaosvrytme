@@ -9,17 +9,19 @@
 <body>
 
 <header class="site-header">
-    <!-- Klikateľné logo vedúce na domov -->
+    <!-- Logo vedľa navigácie -->
     <div class="header-content">
-        <a href="index.html" class="logo-link" aria-label="Chaos v Rytme – domov">
-            <img src="logo.jpg" alt="Logo Chaos v Rytme" class="logo-img" />
-        </a>
-        <nav class="main-nav">
-            <a href="index.html">Domov</a>
-            <a href="clenovia.html">Členovia</a>
-            <a href="#koncerty">Koncerty</a>
-            <a href="#kontakt">Kontakt</a>
-        </nav>
+        <div class="brand-row">
+            <a href="index.html" class="logo-link" aria-label="Chaos v Rytme – domov">
+                <img src="logo.jpg" alt="Logo Chaos v Rytme" class="logo-img" />
+            </a>
+            <nav class="main-nav">
+                <a href="index.html">Domov</a>
+                <a href="clenovia.html">Členovia</a>
+                <a href="#koncerty">Koncerty</a>
+                <a href="#kontakt">Kontakt</a>
+            </nav>
+        </div>
     </div>
 </header>
 
@@ -38,15 +40,43 @@
     </ul>
 
     <h2 id="kontakt">Kontakt</h2>
-    <p>
+    <p>Napíš nám — odpoviem rýchlo. Môžeš použiť aj formulár nižšie.</p>
+
+    <form class="contact-form" action="mailto:chaosvrytme@punk.sk" method="post" enctype="text/plain">
+        <label class="field">
+            Tvoj e‑mail
+            <input type="email" name="email" placeholder="tvoja@posta.sk" required />
+        </label>
+        <label class="field">
+            Správa
+            <textarea name="message" placeholder="Napíš správu..." rows="5"></textarea>
+        </label>
+        <div>
+            <button class="btn" type="submit">Odoslať</button>
+        </div>
+    </form>
+
+    <p class="mt-2">
         📧 chaosvrytme@punk.sk<br />
-        📸 Instagram: @chaosvrytme<br />
         📍 Martin, Slovensko
     </p>
 </main>
 
 <footer>
-    <p>© 2026 Chaos v Rytme – Punk z Martina</p>
+    <div class="footer-inner">
+        <p>© 2026 Chaos v Rytme – Punk z Martina</p>
+        <div class="social-links" aria-label="Sociálne siete">
+            <a href="https://www.tiktok.com/@chaosvrytme" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2v8.5a3.5 3.5 0 1 0 3.5 3.5V6h3V2h-6.5z" fill="#fff"/></svg>
+            </a>
+            <a href="https://instagram.com/chaosvrytme" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="18" height="18" rx="5" stroke="#fff" stroke-width="1.4" fill="none"/><path d="M16 8.5a4 4 0 1 1-4-4v4h4z" fill="#fff"/></svg>
+            </a>
+            <a href="https://facebook.com/chaosvrytme" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15 8h2V5h-2c-1.1 0-2 .9-2 2v1H11v3h2v7h3v-7h2.3l.7-3H16V7c0-.3.2-.5.5-.5H18V4h-1.5C14.6 4 14 4.6 14 5.5V8z" fill="#fff"/></svg>
+            </a>
+        </div>
+    </div>
 </footer>
 
 </body>
