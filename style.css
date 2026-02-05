@@ -123,7 +123,6 @@ a:hover {
     font-weight: 900;
     letter-spacing: 1px;
     color: var(--pink);
-    text-shadow: 0 0 8px var(--pink), 0 0 16px rgba(255, 0, 153, 0.5);
     padding: 6px 12px;
     border: 2px solid transparent;
     transition: all 0.1s ease;
@@ -143,7 +142,6 @@ a:hover {
 
 .main-nav a.active {
     color: #fff;
-    text-shadow: 0 0 10px var(--pink), 0 0 20px var(--pink);
     border: 3px solid var(--pink);
     background: rgba(255, 0, 153, 0.2);
 }
@@ -168,14 +166,12 @@ h1, h2, h3 {
 
 h1 {
     color: var(--green);
-    text-shadow: 0 0 20px var(--green), 0 0 40px rgba(124, 255, 0, 0.6);
     font-size: clamp(2.6rem, 5.5vw, 4rem);
     margin-top: 50px;
 }
 
 h2 {
     color: var(--pink);
-    text-shadow: 0 0 20px var(--pink), 0 0 40px rgba(255, 0, 153, 0.6);
     font-size: clamp(2rem, 4.5vw, 3.2rem);
     position: relative;
     padding-bottom: 20px;
@@ -195,7 +191,6 @@ h2::after {
 
 h3 {
     color: var(--green);
-    text-shadow: 0 0 12px var(--green), 0 0 24px rgba(124, 255, 0, 0.5);
     font-size: clamp(1.3rem, 2.5vw, 1.8rem);
 }
 
