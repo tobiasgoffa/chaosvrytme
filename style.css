@@ -1,0 +1,415 @@
+/* =========================================================
+   CHAOS V RYTME – ŠTÝLY
+   Farby podľa loga: neon green (#7CFF00), neon pink (#ff0099)
+   Autor: pre kapelu Chaos v Rytme (Martin)
+   ========================================================= */
+
+/* ---------- CSS CUSTOM PROPERTIES (farby, medzery, tieňe) ---------- */
+:root {
+    --bg: #0a0a0a;
+    --bg-2: #111111;
+    --text: #e5e5e5;
+    --muted: #9a9a9a;
+
+    --pink: #ff0099;
+    --pink-glow: rgba(255, 0, 153, 0.5);
+
+    --green: #7CFF00;
+    --green-glow: rgba(124, 255, 0, 0.5);
+
+    --accent: #6a00ff; /* len jemne do detailov (linky, focus) */
+
+    --radius: 10px;
+    --gap: 20px;
+    --shadow-soft: 0 0 18px rgba(0,0,0,0.35);
+    --glow-pink: 0 0 10px var(--pink), 0 0 18px var(--pink);
+    --glow-green: 0 0 10px var(--green), 0 0 18px var(--green);
+}
+
+/* ---------- RESET / BASE ---------- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: 'Impact', 'Arial Black', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    line-height: 1.45;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+a {
+    color: var(--pink);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--green);
+}
+
+:focus-visible {
+    outline: 2px dashed var(--accent);
+    outline-offset: 4px;
+}
+
+/* ---------- LAYOUT ---------- */
+.container {
+    width: min(1100px, 92vw);
+    margin-inline: auto;
+}
+
+/* ---------- HEADER S KLIKATEĽNÝM LOGOM ---------- */
+.site-header {
+    background-color: var(--bg-2);
+    border-bottom: 3px solid var(--pink);
+    box-shadow: var(--shadow-soft);
+}
+
+.site-header .wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 14px;
+}
+
+.site-header .home-link {
+    display: inline-flex;
+    align-items: center;
+}
+
+.logo {
+    height: clamp(56px, 9vw, 96px);
+    width: auto;
+    filter: drop-shadow(0 0 12px var(--green-glow)) drop-shadow(0 0 10px var(--pink-glow));
+    transition: transform .15s ease, filter .2s ease;
+    border-radius: 6px; /* jemné zaoblenie proti aliasingu okrajov */
+}
+
+.home-link:hover .logo {
+    transform: scale(1.02);
+    filter: drop-shadow(0 0 14px var(--green-glow)) drop-shadow(0 0 14px var(--pink-glow));
+}
+
+/* ---------- NAVIGÁCIA ---------- */
+.main-nav {
+    background-color: #0f0f0f;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    backdrop-filter: blur(3px);
+}
+
+.main-nav .nav-inner {
+    display: flex;
+    gap: 34px;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 10px;
+}
+
+.main-nav a {
+    font-weight: 800;
+    letter-spacing: 0.4px;
+    color: var(--pink);
+    text-shadow: 0 0 6px var(--pink);
+    transition: color .2s ease, text-shadow .2s ease, transform .12s ease;
+}
+
+.main-nav a:hover {
+    color: var(--green);
+    text-shadow: 0 0 8px var(--green);
+    transform: translateY(-1px);
+}
+
+.main-nav a.active {
+    color: #fff;
+    text-shadow: var(--glow-pink);
+    border-bottom: 2px solid var(--green);
+    padding-bottom: 4px;
+}
+
+/* ---------- HLAVNÝ OBSAH ---------- */
+main {
+    padding: 34px 0 50px;
+}
+
+section {
+    margin-bottom: 48px;
+}
+
+h1, h2, h3 {
+    margin: 0 0 12px 0;
+}
+
+h2 {
+    color: var(--pink);
+    text-shadow: var(--glow-pink);
+    font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+}
+
+.lead {
+    font-size: clamp(1.05rem, 1.5vw, 1.2rem);
+    color: #f3f3f3;
+    max-width: 70ch;
+}
+
+/* ---------- KARTY / BOXY ---------- */
+.card {
+    background: #0e0e0e;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--radius);
+    padding: 18px;
+    box-shadow: var(--shadow-soft);
+}
+
+.card h3 {
+    color: var(--green);
+    text-shadow: var(--glow-green);
+}
+
+/* ---------- KONCERTY (grid) ---------- */
+.gigs {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--gap);
+    margin-top: 16px;
+}
+
+.gig {
+    background: #0e0e0e;
+    border-left: 4px solid var(--pink);
+    padding: 16px;
+    border-radius: var(--radius);
+    transition: transform .12s ease, box-shadow .15s ease, border-color .2s ease;
+}
+
+.gig:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 14px rgba(255, 0, 153, 0.2);
+    border-color: var(--green);
+}
+
+.gig .date {
+    font-weight: 900;
+    color: var(--green);
+}
+
+.gig .place {
+    color: #ddd;
+    opacity: 0.95;
+}
+
+/* ---------- TLAČIDLÁ ---------- */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 16px;
+    border-radius: 999px;
+    border: 2px solid var(--pink);
+    color: #fff;
+    background: linear-gradient(180deg, rgba(255,0,153,0.18), rgba(124,255,0,0.12));
+    text-shadow: 0 0 6px rgba(0,0,0,0.6);
+    box-shadow: inset 0 0 10px rgba(255,255,255,0.06), 0 0 12px rgba(255,0,153,0.18);
+    transition: transform .12s ease, box-shadow .12s ease, border-color .2s ease;
+    cursor: pointer;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+    border-color: var(--green);
+    box-shadow: inset 0 0 10px rgba(255,255,255,0.08), 0 0 16px rgba(124,255,0,0.22);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+/* ---------- TABUĽKA (ak budeš chcieť setlist/tech rider) ---------- */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: #0e0e0e;
+}
+
+.table th,
+.table td {
+    padding: 12px 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.table th {
+    text-align: left;
+    background: rgba(255,0,153,0.08);
+    color: var(--pink);
+}
+
+.table tr:hover td {
+    background: rgba(124,255,0,0.05);
+}
+
+/* ---------- SEKCIÁ „ČLENOVIA“ ---------- */
+.members {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: var(--gap);
+    margin-top: 16px;
+}
+
+.member {
+    background: #0e0e0e;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--radius);
+    padding: 16px;
+    text-align: center;
+    box-shadow: var(--shadow-soft);
+    transition: transform .12s ease, box-shadow .15s ease;
+}
+
+.member:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 14px rgba(124,255,0,0.18);
+}
+
+.member .avatar {
+    width: 120px;
+    height: 120px;
+    margin: 6px auto 12px;
+    border-radius: 50%;
+    background: #0c0c0c;
+    border: 2px solid rgba(255,255,255,0.08);
+    object-fit: cover;
+}
+
+.member .name {
+    font-weight: 900;
+    color: var(--green);
+    text-shadow: var(--glow-green);
+}
+
+.member .role {
+    color: var(--pink);
+    text-shadow: 0 0 6px var(--pink);
+    font-weight: 800;
+    margin-bottom: 6px;
+}
+
+.member .bio {
+    font-size: 0.98rem;
+    color: #d6d6d6;
+}
+
+/* ---------- FORMULÁRE / KONTAKT ---------- */
+input[type="text"],
+input[type="email"],
+textarea {
+    width: 100%;
+    background: #0e0e0e;
+    color: var(--text);
+    border: 1px solid rgba(255,255,255,0.14);
+    border-radius: 8px;
+    padding: 10px 12px;
+    transition: border-color .2s ease, box-shadow .2s ease;
+}
+
+textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+input:focus, textarea:focus {
+    border-color: var(--green);
+    box-shadow: 0 0 12px rgba(124,255,0,0.18);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--gap);
+}
+
+@media (max-width: 720px) {
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ---------- FOOTER ---------- */
+footer {
+    background-color: var(--bg-2);
+    border-top: 3px solid var(--green);
+    text-align: center;
+    padding: 22px 14px;
+    color: var(--muted);
+}
+
+/* ---------- UTILITY TRIEDY ---------- */
+.mt-0 { margin-top: 0 !important; }
+.mt-1 { margin-top: 8px !important; }
+.mt-2 { margin-top: 16px !important; }
+.mt-3 { margin-top: 24px !important; }
+.mt-4 { margin-top: 32px !important; }
+
+.mb-0 { margin-bottom: 0 !important; }
+.mb-1 { margin-bottom: 8px !important; }
+.mb-2 { margin-bottom: 16px !important; }
+.mb-3 { margin-bottom: 24px !important; }
+.mb-4 { margin-bottom: 32px !important; }
+
+.center { text-align: center !important; }
+
+/* ---------- RESPONSIVE / MOBILE VYLEPŠENIA ---------- */
+@media (max-width: 980px) {
+    .main-nav .nav-inner {
+        gap: 22px;
+        padding: 10px 8px;
+    }
+}
+
+@media (max-width: 680px) {
+    .site-header .wrap {
+        padding: 12px 10px;
+    }
+
+    .main-nav .nav-inner {
+        gap: 16px;
+        flex-wrap: wrap;
+    }
+
+    .lead {
+        font-size: 1rem;
+    }
+}
+
+/* ---------- VOLITEĽNÉ NEÓNOVÉ ANIMÁCIE ---------- */
+.neon-pulse {
+    animation: neonPulse 1.6s ease-in-out infinite alternate;
+}
+
+@keyframes neonPulse {
+    from { text-shadow: 0 0 6px var(--pink); }
+    to   { text-shadow: 0 0 14px var(--pink), 0 0 22px var(--pink); }
+}
+
+.neon-border {
+    box-shadow: 0 0 8px var(--pink), inset 0 0 8px rgba(255,255,255,0.05);
+}
