@@ -42,46 +42,47 @@ a:hover {
     color: var(--green);
 }
 
-/* social links text */
+/* social links text - container */
 .social-links-text {
     display: flex;
     width: 100%;
     gap: 12px;
     align-items: center;
     justify-content: flex-start;
+    margin: 8px 0;
 }
+
+/* social links - match submit button styles */
 .social-links-text a {
     border-radius: 8px;
     padding: 10px 16px;
-    background: var(--green);
-    color: var(--pink);
-    border: 2px solid var(--green);
+    background: var(--pink);
+    color: #000;
+    border: 2px solid var(--pink);
     cursor: pointer;
-    transition: all 0.12s ease;
+    transition: all 0.1s ease;
     text-transform: uppercase;
     letter-spacing: 1px;
     text-decoration: none;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    -webkit-text-stroke: 1px #000;
-    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-    text-shadow: 0 0 6px var(--pink), 0 0 12px rgba(255, 0, 153, 0.4);
 }
+
 .social-links-text a:hover {
-    color: var(--pink);
-    border-color: var(--pink);
+    color: var(--green);
     background: transparent;
-    text-shadow: 0 0 12px var(--pink), 0 0 24px rgba(255, 0, 153, 0.6);
-    box-shadow: 0 0 12px var(--pink), 0 0 24px rgba(255, 0, 153, 0.18);
-    transform: translateY(-3px) scale(1.02) skewX(-3deg);
+    border: 2px solid var(--green);
+    text-shadow: 0 0 12px var(--green), 0 0 50px rgba(124, 255, 0, 0.7);
+    box-shadow: 0 0 30px var(--green), 0 0 50px rgba(124, 255, 0, 0.5);
+    transform: scale(1.08) skewX(-3deg);
 }
 
 /* ========== HEADER ========== */
 .site-header {
     background-color: #000;
-    border-bottom: 10px solid var(--pink);
     border-top: 4px solid var(--green);
+    border-bottom: 10px solid var(--pink);
     padding: 20px;
     position: relative;
     overflow: visible;
@@ -221,8 +222,8 @@ h2::after {
     width: 100%;
     max-width: 400px;
     height: 5px;
-    background: linear-gradient(90deg, var(--pink) 0%, var(--green) 50%, var(--pink) 100%);
-    box-shadow: 0 0 6px var(--pink), 0 0 8px var(--green);
+    background: var(--green);
+    box-shadow: 0 0 8px var(--green);
 }
 
 h3 {
