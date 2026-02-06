@@ -123,7 +123,7 @@ a:hover {
     font-weight: 900;
     letter-spacing: 1px;
     color: var(--pink);
-    padding: 6px 12px;
+    padding: 10px 20px;
     border: 2px solid transparent;
     transition: all 0.1s ease;
     font-size: 1.15rem;
@@ -175,6 +175,7 @@ h2 {
     font-size: clamp(2rem, 4.5vw, 3.2rem);
     position: relative;
     padding-bottom: 20px;
+    text-shadow: 0 0 0px var(--pink), 0 0 75px rgba(255, 0, 153, 0.5);
 }
 
 h2::after {
@@ -186,7 +187,7 @@ h2::after {
     max-width: 400px;
     height: 5px;
     background: linear-gradient(90deg, var(--pink) 0%, var(--green) 50%, var(--pink) 100%);
-    box-shadow: 0 0 15px var(--pink), 0 0 25px var(--green);
+    box-shadow: 0 0 6px var(--pink), 0 0 8px var(--green);
 }
 
 h3 {
@@ -205,7 +206,7 @@ p {
 .highlight {
     color: var(--green);
     font-weight: 900;
-    text-shadow: 0 0 8px var(--green), 0 0 12px rgba(124, 255, 0, 0.4);
+    text-shadow: 0 0 2px var(--green), 0 0 30px rgba(124, 255, 0, 0.4);
 }
 
 ul, ol {
@@ -323,6 +324,23 @@ footer p {
 .contact-form .btn {
     border-radius: 8px;
     padding: 10px 16px;
+    background: var(--pink);
+    color: #000;
+    font-weight: 900;
+    border: 2px solid var(--pink);
+    cursor: pointer;
+    transition: all 0.1s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.contact-form .btn:hover {
+    color: var(--green);
+    background: transparent;
+    border: 2px solid var(--green);
+    text-shadow: 0 0 12px var(--green), 0 0 24px rgba(124, 255, 0, 0.7);
+    box-shadow: 0 0 12px var(--green), 0 0 24px rgba(124, 255, 0, 0.5);
+    transform: scale(1.08) skewX(-3deg);
 }
 
 /* ========== UTILITY ========== */
