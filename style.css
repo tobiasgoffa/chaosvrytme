@@ -371,7 +371,6 @@ footer p {
     padding: 10px 16px;
     background: var(--pink);
     color: #000;
-    font-weight: 900;
     border: 2px solid var(--pink);
     cursor: pointer;
     transition: all 0.1s ease;
@@ -541,5 +540,13 @@ footer p {
     .social-links a {
         width: 42px;
         height: 42px;
+    }
+
+    .social-links-text a {
+        font-weight: 900;
+    }
+
+    .contact-form .btn {
+        font-weight: 900;
     }
 }
