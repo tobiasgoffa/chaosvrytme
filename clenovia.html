@@ -25,6 +25,7 @@
                 <a href="clenovia.html">Členovia</a>
                 <a href="hudba.html">Hudba</a>
                 <a href="index.html#koncerty">Koncerty</a>
+                <a href="snake.html">Snake</a>
                 <a href="index.html#kontakt">Kontakt</a>
             </nav>
         </div>
@@ -91,4 +92,20 @@
             nav.classList.remove('active');
         });
     });
+    // === HIDE NAV ON SCROLL DOWN, SHOW ON SCROLL UP ===
+let lastScroll = 0;
+const header = document.querySelector('.site-header');
+
+window.addEventListener('scroll', () => {
+    let current = window.scrollY;
+
+    if (current > lastScroll && current > 80) {
+        // scrollujem dole
+        header.classList.add('hide-header');
+    } else {
+        // scrollujem hore
+        header.classList.remove('hide-header');
+    }
+    lastScroll = current;
+});
 </script>

@@ -9,13 +9,9 @@
     --green: #7cff00;
 }
 
-* {
-    box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
-html {
-    scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
     margin: 0;
@@ -37,12 +33,11 @@ a {
     color: var(--pink);
     text-decoration: none;
 }
+a:hover { color: var(--green); }
 
-a:hover {
-    color: var(--green);
-}
-
-/* social links text - container */
+/* =========================================================
+   SOCIAL BUTTONS (text links štýl)
+   ========================================================= */
 .social-links-text {
     display: flex;
     width: 100%;
@@ -52,7 +47,6 @@ a:hover {
     margin: 8px 0;
 }
 
-/* social links - match submit button styles */
 .social-links-text a {
     border-radius: 8px;
     padding: 10px 16px;
@@ -63,7 +57,6 @@ a:hover {
     transition: all 0.1s ease;
     text-transform: uppercase;
     letter-spacing: 1px;
-    text-decoration: none;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -78,23 +71,24 @@ a:hover {
     transform: scale(1.08) skewX(-3deg);
 }
 
-/* ========== HEADER ========== */
+/* =========================================================
+   HEADER + NAV
+   ========================================================= */
 .site-header {
     background-color: #000;
     border-top: 4px solid var(--green);
     border-bottom: 10px solid var(--pink);
     padding: 20px;
-    position: relative;
+    position: sticky;   /* drží sa navrchu */
+    top: 0;
+    z-index: 999;
+    transition: transform 0.25s ease;
+    will-change: transform;
     overflow: visible;
 }
-
 .site-header::before {
     content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    position: absolute; inset: 0;
     background: repeating-linear-gradient(
         90deg,
         transparent,
@@ -104,6 +98,9 @@ a:hover {
     );
     pointer-events: none;
 }
+
+/* skrytie headera pri scrollovaní (triedu pridáva JS) */
+.hide-header { transform: translateY(-120%); }
 
 .header-content {
     display: flex;
@@ -126,11 +123,7 @@ a:hover {
     justify-content: space-between;
 }
 
-.logo-link {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-}
+.logo-link { display: inline-flex; align-items: center; justify-content: center; }
 
 .logo-img {
     height: clamp(60px, 10vw, 110px);
@@ -138,12 +131,9 @@ a:hover {
     filter: brightness(1.05) contrast(1.05);
     transition: transform 0.12s ease, filter 0.12s ease;
 }
+.logo-link:hover .logo-img { transform: scale(1.06) rotate(-1deg); }
 
-.logo-link:hover .logo-img {
-    transform: scale(1.06) rotate(-1deg);
-}
-
-/* ========== NAVIGÁCIA ========== */
+/* Navigácia */
 .main-nav {
     display: flex;
     gap: 20px;
@@ -154,7 +144,6 @@ a:hover {
     flex-direction: row;
     margin-left: auto;
 }
-
 .main-nav a {
     font-weight: 900;
     letter-spacing: 1px;
@@ -167,7 +156,6 @@ a:hover {
     transform-origin: center;
     white-space: nowrap;
 }
-
 .main-nav a:hover {
     color: var(--green);
     text-shadow: 0 0 12px var(--green), 0 0 24px rgba(124, 255, 0, 0.7);
@@ -175,18 +163,13 @@ a:hover {
     transform: scale(1.12) skewX(-6deg);
     background: rgba(124, 255, 0, 0.1);
 }
+/* zámerne žiadny .main-nav a.active, aby HUDBA nemenila vzhľad po kliknutí */
 
-.main-nav a.active {
-    color: #fff;
-    border: 3px solid var(--pink);
-    background: rgba(255, 0, 153, 0.2);
-}
+.hamburger { display: none; }
 
-.hamburger {
-    display: none;
-}
-
-/* ========== HLAVNÝ OBSAH ========== */
+/* =========================================================
+   MAIN TYPOGRAPHY
+   ========================================================= */
 main {
     max-width: 1200px;
     margin: 0 auto;
@@ -213,23 +196,16 @@ h2 {
     padding-bottom: 20px;
     text-shadow: 0 0 0px var(--pink), 0 0 75px rgba(255, 0, 153, 0.5);
 }
-
 h2::after {
     content: '';
     position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    max-width: 400px;
-    height: 5px;
+    bottom: 0; left: 0;
+    width: 100%; max-width: 400px; height: 5px;
     background: var(--green);
     box-shadow: 0 0 8px var(--green);
 }
 
-h3 {
-    color: var(--green);
-    font-size: clamp(1.3rem, 2.5vw, 1.8rem);
-}
+h3 { color: var(--green); font-size: clamp(1.3rem, 2.5vw, 1.8rem); }
 
 p {
     font-size: clamp(0.95rem, 2vw, 1.15rem);
@@ -244,10 +220,7 @@ p {
     text-shadow: 0 0 2px var(--green), 0 0 30px rgba(124, 255, 0, 0.4);
 }
 
-ul, ol {
-    margin: 24px 0;
-    padding-left: 40px;
-}
+ul, ol { margin: 24px 0; padding-left: 40px; }
 
 li {
     font-size: clamp(0.95rem, 1.8vw, 1.1rem);
@@ -259,20 +232,56 @@ li {
     padding-left: 28px;
     letter-spacing: 0.8px;
 }
-
 li::before {
     content: '';
     position: absolute;
-    left: 0;
-    top: 8px;
-    width: 10px;
-    height: 10px;
+    left: 0; top: 8px;
+    width: 10px; height: 10px;
     background: var(--pink);
     box-shadow: 0 0 8px var(--pink);
     clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 50% 75%, 18% 100%, 0% 38%);
 }
 
-/* ========== FOOTER ========== */
+/* =========================================================
+   ALBUM SECTION (COVER LEFT – TRACKS RIGHT)
+   ========================================================= */
+.album-section {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 40px;
+    margin-top: 40px;
+}
+
+.album-cover {
+    width: clamp(260px, 32vw, 360px);
+    max-width: 100%;
+    margin: 20px 0;
+    border: 4px solid var(--pink);
+    box-shadow: 0 0 12px var(--pink), 0 0 30px rgba(255, 0, 153, 0.5);
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
+    flex-shrink: 0;  /* Drž šírku vľavo, nech sa nezmenšuje */
+}
+.album-cover:hover {
+    transform: scale(1.02) rotate(-0.5deg);
+    box-shadow: 0 0 18px var(--pink), 0 0 40px rgba(255, 0, 153, 0.6);
+}
+
+.tracklist {
+    flex: 1;
+    min-width: 260px;
+}
+.tracklist h3 { margin-top: 0; }
+.tracklist ul {
+    list-style: none;
+    padding-left: 0; /* nech sa nenačíta globálny padding na UL */
+    margin: 16px 0 0 0;
+}
+/* nechávam punk bullets z globálneho li::before – sú pekné aj tu */
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
 footer {
     background-color: #000;
     border-top: 10px solid var(--green);
@@ -300,45 +309,34 @@ footer {
     gap: 32px;
     align-items: center;
 }
-
 .social-links a {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 48px;
-    height: 48px;
+    width: 48px; height: 48px;
     background: transparent;
     border: 2px solid var(--pink);
     border-radius: 4px;
     transition: transform .12s ease, background .12s ease, box-shadow .12s ease;
 }
-
-.social-links img {
-    width: 32px;
-    height: 32px;
-    display: block;
-}
-
+.social-links img { width: 32px; height: 32px; display: block; }
 .social-links a:hover {
     transform: translateY(-4px) scale(1.15) rotate(3deg);
     background: rgba(255, 0, 153, 0.15);
     box-shadow: 0 0 12px var(--pink), 0 0 24px rgba(255, 0, 153, 0.5);
 }
 
-footer p {
-    color: #999;
-    text-shadow: 0 0 6px var(--green);
-    margin: 0;
-}
+footer p { color: #999; text-shadow: 0 0 6px var(--green); margin: 0; }
 
-/* ========== CONTACT FORM ========== */
+/* =========================================================
+   CONTACT FORM
+   ========================================================= */
 .contact-form {
     max-width: 760px;
     display: grid;
     gap: 12px;
     margin-top: 12px;
 }
-
 .contact-form .field {
     display: flex;
     flex-direction: column;
@@ -346,7 +344,6 @@ footer p {
     font-weight: 700;
     color: #ddd;
 }
-
 .contact-form input[type="email"],
 .contact-form textarea {
     padding: 10px 12px;
@@ -356,7 +353,6 @@ footer p {
     color: #fff;
     transition: border-color 0.12s ease, box-shadow 0.12s ease;
 }
-
 .contact-form input[type="email"]:focus,
 .contact-form textarea:focus,
 .contact-form input[type="email"]:focus-visible,
@@ -365,7 +361,6 @@ footer p {
     box-shadow: 0 0 10px rgba(124, 255, 0, 0.12);
     outline: none;
 }
-
 .contact-form .btn {
     border-radius: 8px;
     padding: 10px 16px;
@@ -377,62 +372,59 @@ footer p {
     text-transform: uppercase;
     letter-spacing: 1px;
 }
-
 .contact-form .btn:hover {
     color: var(--green);
     background: transparent;
     border: 2px solid var(--green);
     text-shadow: 0 0 12px var(--green), 0 0 50px rgba(124, 255, 0, 0.7);
-    box-shadow: 0 0 30px var(--green), 0 0 50x rgba(124, 255, 0, 0.5);
+    box-shadow: 0 0 30px var(--green), 0 0 50px rgba(124, 255, 0, 0.5);
     transform: scale(1.08) skewX(-3deg);
 }
 
-/* ========== UTILITY ========== */
-.mt-1 { margin-top: 12px; }
-.mt-2 { margin-top: 24px; }
-.mt-3 { margin-top: 36px; }
-.mt-4 { margin-top: 48px; }
-
-.mb-1 { margin-bottom: 12px; }
-.mb-2 { margin-bottom: 24px; }
-.mb-3 { margin-bottom: 36px; }
-.mb-4 { margin-bottom: 48px; }
-
+/* =========================================================
+   UTILS
+   ========================================================= */
+.mt-1 { margin-top: 12px; } .mt-2 { margin-top: 24px; }
+.mt-3 { margin-top: 36px; } .mt-4 { margin-top: 48px; }
+.mb-1 { margin-bottom: 12px; } .mb-2 { margin-bottom: 24px; }
+.mb-3 { margin-bottom: 36px; } .mb-4 { margin-bottom: 48px; }
 .center { text-align: center; }
 
-/* ========== RESPONSIVE ========== */
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+/* <= 980px – menšie paddingy v navigácii */
 @media (max-width: 980px) {
-    .header-content {
-        gap: 20px;
-        padding: 0 10px;
-    }
-
-    .main-nav {
-        gap: 16px;
-    }
-
-    .main-nav a {
-        padding: 8px 12px;
-        font-size: 0.85rem;
-        letter-spacing: 1px;
-    }
+    .header-content { gap: 20px; padding: 0 10px; }
+    .main-nav { gap: 16px; }
+    .main-nav a { padding: 8px 12px; font-size: 0.95rem; letter-spacing: 1px; }
 }
 
+/* <= 768px – album sekcia pod seba */
+@media (max-width: 768px) {
+    .album-section {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 24px;
+    }
+    .album-cover { width: min(80%, 400px); margin: 0 auto; }
+    .tracklist ul { padding-left: 0; }
+    /* Na mobile vypneme punk bullets pre tracklist, aby sa lepšie centrovalo */
+    .tracklist li { padding-left: 0; }
+    .tracklist li::before { display: none; }
+}
+
+/* <= 680px – mobilné menu (hamburger) */
 @media (max-width: 680px) {
     .site-header {
         padding: 16px;
         border-bottom: 8px solid var(--pink);
         border-top: 3px solid var(--green);
     }
-
-    .header-content {
-        gap: 14px;
-        align-items: flex-start;
-    }
-
-    .logo-img {
-        height: clamp(50px, 8vw, 80px);
-    }
+    .header-content { gap: 14px; align-items: flex-start; }
+    .logo-img { height: clamp(50px, 8vw, 80px); }
 
     .hamburger {
         display: flex;
@@ -444,28 +436,17 @@ footer p {
         margin-left: auto;
         z-index: 1001;
     }
-
     .hamburger span {
-        width: 25px;
-        height: 3px;
+        width: 25px; height: 3px;
         background: var(--pink);
         margin: 4px 0;
         transition: all 0.3s ease;
         display: block;
         box-shadow: 0 0 8px var(--pink);
     }
-
-    .hamburger.active span:nth-child(1) {
-        transform: rotate(45deg) translate(10px, 10px);
-    }
-
-    .hamburger.active span:nth-child(2) {
-        opacity: 0;
-    }
-
-    .hamburger.active span:nth-child(3) {
-        transform: rotate(-45deg) translate(8px, -8px);
-    }
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
 
     .main-nav {
         gap: 12px;
@@ -473,9 +454,7 @@ footer p {
         flex-basis: 100%;
         flex-wrap: wrap;
         position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
+        top: 100%; left: 0; right: 0;
         background: #000;
         border-bottom: 8px solid var(--pink);
         flex-direction: column;
@@ -483,70 +462,23 @@ footer p {
         display: none;
         margin-left: 0;
     }
+    .main-nav.active { display: flex; order: 2; margin-top: 8px; }
+    .main-nav a { font-size: 0.95rem; padding: 8px 10px; border: 1px solid transparent; }
 
-    .main-nav.active {
-        display: flex;
-        order: 2;
-        margin-top: 8px;
-    }
+    main { padding: 40px 16px; }
 
-    .main-nav a {
-        font-size: 0.85rem;
-        padding: 5px 8px;
-        border: 1px solid transparent;
-    }
+    h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); }
+    h2 { font-size: clamp(1.4rem, 3vw, 2rem); }
+    h2::after { max-width: 300px; }
 
-    main {
-        padding: 40px 16px;
-    }
+    ul, ol { padding-left: 30px; }
+    li { padding-left: 24px; margin-bottom: 14px; }
+    li::before { top: 6px; width: 8px; height: 8px; }
 
-    h1 {
-        font-size: clamp(1.8rem, 4vw, 2.6rem);
-    }
+    footer { padding: 25px 15px; margin-top: 60px; font-size: 0.9rem; }
+    .social-links { gap: 24px; }
+    .social-links a { width: 42px; height: 42px; }
 
-    h2 {
-        font-size: clamp(1.4rem, 3vw, 2rem);
-    }
-
-    h2::after {
-        max-width: 300px;
-    }
-
-    ul, ol {
-        padding-left: 30px;
-    }
-
-    li {
-        padding-left: 24px;
-        margin-bottom: 14px;
-    }
-
-    li::before {
-        top: 6px;
-        width: 8px;
-        height: 8px;
-    }
-
-    footer {
-        padding: 25px 15px;
-        margin-top: 60px;
-        font-size: 0.9rem;
-    }
-
-    .social-links {
-        gap: 24px;
-    }
-
-    .social-links a {
-        width: 42px;
-        height: 42px;
-    }
-
-    .social-links-text a {
-        font-weight: 900;
-    }
-
-    .contact-form .btn {
-        font-weight: 900;
-    }
+    .social-links-text a,
+    .contact-form .btn { font-weight: 900; }
 }

@@ -133,4 +133,20 @@
             nav.classList.remove('active');
         });
     });
+    // === HIDE NAV ON SCROLL DOWN, SHOW ON SCROLL UP ===
+let lastScroll = 0;
+const header = document.querySelector('.site-header');
+
+window.addEventListener('scroll', () => {
+    let current = window.scrollY;
+
+    if (current > lastScroll && current > 80) {
+        // scrollujem dole
+        header.classList.add('hide-header');
+    } else {
+        // scrollujem hore
+        header.classList.remove('hide-header');
+    }
+    lastScroll = current;
+});
 </script>
