@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chaos v Rytme – Punk z Martina</title>
+    <link rel="icon" href="logo.jpg" type="image/jpeg" />
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Lokálne (len pre túto stránku) doplnky štýlu pre hru Snake -->
+    <style>
+        /* Stránka s hrou — držíme scoped na #snake-page */
+        #snake-page {
+            padding: 32px 16px 48px;
+            color: #39ff14;
+            text-align: center;
+        }
+
+        #snake-page h1 {
+            margin: 6px 0 16px;
+            font-size: 28px;
+            color: #39ff14;
+            text-shadow: 0 0 12px #39ff14;
+        }
+
+        /* Panel s nastaveniami */
+        #snake-menu {
+            margin: 10px auto 18px;
+            display: grid;
+            gap: 10px 18px;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            max-width: 920px;
+        }
+        #snake-menu label {
+            display: block;
+            font-size: 16px;
+            margin-bottom: 6px;
+            color: #ff00ea;
+            text-shadow: 0 0 10px #ff00ea;
+        }
+        #snake-menu .neon-select {
+            width: 100%;
+            padding: 10px 12px;
+            font-size: 16px;
+            border-radius: 10px;
+            background: #111;
+            color: #39ff14;
+            border: 2px solid #39ff14;
+            text-shadow: 0 0 8px #39ff14;
+            outline: none;
+        }
+        #snake-menu .neon-btn {
+            background: #e6007e;
+            padding: 12px 22px;
+            border: none;
+            color: white;
+            font-size: 18px;
+            border-radius: 10px;
+            cursor: pointer;
+            text-shadow: 0 0 10px #fff;
+            box-shadow: 0 0 20px #e6007e;
+            transition: box-shadow .2s ease;
+            width: 100%;
+        }
+        #snake-menu .neon-btn:hover {
+            box-shadow: 0 0 40px #ff00c8;
+        }
+
+        /* Skóre + plátno */
+        #score {
+            font-size: 20px;
+            margin: 10px 0 10px;
+            text-shadow: 0 0 10px #39ff14;
+        }
+
+        #gameContainer {
+            margin: 0 auto;
+            display: none; /* zobrazí sa po štarte */
+        }
+
+        #gameCanvas {
+            background: #000;
+            border: 4px solid #39ff14;
+            box-shadow: 0 0 25px #ff009d, inset 0 0 50px #9400ff;
+            width: min(92vw, 560px); /* responzívna šírka */
+            height: auto;            /* zachová pomer strán k vnútornej veľkosti */
+            touch-action: none;      /* aby sa na mobile pri potiahnutí nescrollovalo */
+            border-radius: 8px;
+        }
+
+        .hint {
+            margin-top: 8px;
+            font-size: 14px;
+            color: #bbb;
+        }
+
+        /* Glitch efekt pri smrti */
+        @keyframes glitch {
+            0%   { filter: hue-rotate(0deg); }
+            50%  { filter: hue-rotate(90deg) blur(2px); transform: scale(1.03); }
+            100% { filter: hue-rotate(0deg); }
+        }
+    </style>
+</head>
+<body>
+
+<header class="site-header">
+    <!-- Logo vedľa navigácie -->
+    <div class="header-content">
+        <div class="brand-row">
+            <a href="index.html" class="logo-link" aria-label="Chaos v Rytme – domov">
+                <img src="logo.jpg" alt="Logo Chaos v Rytme" class="logo-img" />
+            </a>
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="main-nav" id="main-nav">
+                <a href="index.html">Domov</a>
+                <a href="#okapele">O kapele</a>
+                <a href="clenovia.html">Členovia</a>
+                <a href="hudba.html">Hudba</a>
+                <a href="#koncerty">Koncerty</a>
+                <a href="snake.html" aria-current="page">Snake</a>
+                <a href="#kontakt">Kontakt</a>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<main>
+    <!-- ======= SNAKE STRÁNKA ======= -->
+    <section id="snake-page" aria-labelledby="snake-title">
+        <h1 id="snake-title">CHAOS v RYTME – NEON SNAKE</h1>
+
+        <!-- Panel nastavení -->
+        <div id="snake-menu">
+            <div>
+                <label for="mapSelect">Mapa</label>
+                <select id="mapSelect" class="neon-select">
+                    <option value="classic">Classic Grid</option>
+                    <option value="neon">Neon Overdrive</option>
+                    <option value="dark">Dark Void</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="speedSelect">Rýchlosť</label>
+                <select id="speedSelect" class="neon-select">
+                    <option value="120">Pomalá</option>
+                    <option value="80" selected>Normál</option>
+                    <option value="50">Rýchla</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="gridSelect">Mriežka</label>
+                <select id="gridSelect" class="neon-select">
+                    <option value="20">20 × 20</option>
+                    <option value="25" selected>25 × 25</option>
+                    <option value="30">30 × 30</option>
+                </select>
+            </div>
+
+            <div>
+                <label style="visibility:hidden;">.</label>
+                <button class="neon-btn" id="startBtn" type="button">Spustiť hru</button>
+            </div>
+        </div>
+
+        <!-- Hra -->
+        <div id="gameContainer" role="region" aria-label="Herné plátno">
+            <div id="score" aria-live="polite">Skóre: 0</div>
+            <canvas id="gameCanvas"></canvas>
+            <p class="hint">Ovládanie: šípky na PC • potiahnutie (swipe) na mobile. Po štarte sa had pohne až po prvom vstupe.</p>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="footer-inner">
+        <p>© 2026 Chaos v Rytme – Punk z Martina</p>
+        <div class="social-links" aria-label="Sociálne siete">
+            <a href="https://www.tiktok.com/@chaosvrytme" target="_blank" rel="noopener noreferrer" aria-label="TikTok" title="TikTok">
+                <img src="path1.svg" alt="TikTok" width="32" height="32" />
+            </a>
+            <a href="https://instagram.com/chaosvrytme" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="4" y="4" width="16" height="16" rx="4" stroke="#7CFF00" stroke-width="1.5" fill="none"/>
+                    <circle cx="12" cy="12" r="3.5" stroke="#ff0099" stroke-width="1.5" fill="none"/>
+                    <circle cx="16" cy="8" r="1" fill="#7CFF00"/>
+                </svg>
+            </a>
+            <a href="https://bandzone.cz/chaosvrytme?at=info&cd=1" target="_blank" rel="noopener noreferrer" aria-label="BandZone" title="BandZone">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <text x="2" y="20" font-size="20" font-weight="bold" fill="#ff0099" stroke="#7CFF00" stroke-width="0.5">BZ</text>
+                </svg>
+            </a>
+        </div>
+    </div>
+</footer>
+
+<!-- Skripty: najprv hamburger, potom hra -->
+<script>
+    // ====== HAMBURGER NAV ======
+    const hamburger = document.getElementById('hamburger');
+    const nav = document.getElementById('main-nav');
+
+    hamburger.addEventListener('click', function() {
+        hamburger.classList.toggle('active');
+        nav.classList.toggle('active');
+    });
+
+    // Zavrieť menu po kliknutí na odkaz
+    const navLinks = nav.querySelectorAll('a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            hamburger.classList.remove('active');
+            nav.classList.remove('active');
+        });
+    });
+
+    // ====== NEON SNAKE ======
+    let canvas, ctx;
+    let gridSize = 25, tileSize = 20; // tileSize sa vypočíta neskôr z canvas.width / gridSize
+    let snake, food;
+    let vx = 0, vy = 0;
+    let score = 0;
+    let speed = 80;
+    let gameLoop;
+    let map = "classic";
+    let movementStarted = false;
+
+    // Swipe len na canvase (neblokuje celé scrollovanie stránky)
+    let startX = 0, startY = 0;
+
+    const startBtn    = document.getElementById('startBtn');
+    const scoreBox    = document.getElementById('score');
+    const gameWrap    = document.getElementById('gameContainer');
+    const mapSelect   = document.getElementById('mapSelect');
+    const speedSelect = document.getElementById('speedSelect');
+    const gridSelect  = document.getElementById('gridSelect');
+
+    startBtn.addEventListener('click', startGame);
+
+    function startGame() {
+        gameWrap.style.display = "block";
+
+        map     = mapSelect.value;
+        speed   = parseInt(speedSelect.value, 10);
+        gridSize= parseInt(gridSelect.value, 10);
+
+        canvas = document.getElementById("gameCanvas");
+
+        // Vnútorná logická veľkosť plátna (nezávislá od CSS šírky)
+        const logicalSize = 560;           // štandardná logická veľkosť
+        canvas.width = logicalSize;
+        canvas.height = logicalSize;
+
+        ctx = canvas.getContext("2d");
+        tileSize = canvas.width / gridSize;
+
+        resetGame();
+
+        if (gameLoop) clearInterval(gameLoop);
+        gameLoop = setInterval(update, speed);
+
+        // Pripojíme dotykové ovládanie len na plátno
+        canvas.addEventListener("touchstart", onTouchStart, {passive: true});
+        canvas.addEventListener("touchmove", onTouchMove, {passive: true});
+    }
+
+    function resetGame() {
+        // Začni v strede mriežky
+        const mid = Math.floor(gridSize / 2);
+        snake = [{x: mid, y: mid}];
+
+        vx = 0; vy = 0;
+        movementStarted = false;
+
+        spawnFood();
+        score = 0;
+        updateScore();
+        draw(); // vykresli úvodný stav
+    }
+
+    function spawnFood() {
+        // Jednoduché náhodné – ak by padlo na telo, ďalší frame sa vyrieši kolíziou ako jedlo sa znovu vygeneruje
+        food = {
+            x: Math.floor(Math.random() * gridSize),
+            y: Math.floor(Math.random() * gridSize)
+        };
+    }
+
+    function updateScore() {
+        scoreBox.textContent = "Skóre: " + score;
+    }
+
+    // Ovládanie – klávesnica
+    document.addEventListener("keydown", e => {
+        if (e.key === "ArrowUp" && vy !== 1)    { vx = 0;  vy = -1; movementStarted = true; }
+        if (e.key === "ArrowDown" && vy !== -1) { vx = 0;  vy = 1;  movementStarted = true; }
+        if (e.key === "ArrowLeft" && vx !== 1)  { vx = -1; vy = 0;  movementStarted = true; }
+        if (e.key === "ArrowRight" && vx !== -1){ vx = 1;  vy = 0;  movementStarted = true; }
+    });
+
+    // Ovládanie – dotyk na canvase
+    function onTouchStart(e) {
+        const t = e.touches[0];
+        startX = t.clientX;
+        startY = t.clientY;
+    }
+    function onTouchMove(e) {
+        const t = e.touches[0];
+        const dx = t.clientX - startX;
+        const dy = t.clientY - startY;
+
+        if (Math.abs(dx) > Math.abs(dy)) {
+            if (dx > 20 && vx !== -1)  { vx = 1;  vy = 0;  movementStarted = true; }
+            if (dx < -20 && vx !== 1)  { vx = -1; vy = 0;  movementStarted = true; }
+        } else {
+            if (dy > 20 && vy !== -1)  { vx = 0;  vy = 1;  movementStarted = true; }
+            if (dy < -20 && vy !== 1)  { vx = 0;  vy = -1; movementStarted = true; }
+        }
+    }
+
+    function update() {
+        // Kým nepadne prvý vstup, len renderujeme (freeze)
+        if (!movementStarted && vx === 0 && vy === 0) {
+            draw();
+            return;
+        }
+
+        const head = { x: snake[0].x + vx, y: snake[0].y + vy };
+
+        // Nárazy do okrajov
+        if (head.x < 0 || head.x >= gridSize || head.y < 0 || head.y >= gridSize) {
+            return gameOver();
+        }
+
+        // Nárazy do seba
+        if (snake.some(p => p.x === head.x && p.y === head.y)) {
+            return gameOver();
+        }
+
+        snake.unshift(head);
+
+        // Jedlo
+        if (head.x === food.x && head.y === food.y) {
+            score++;
+            updateScore();
+            spawnFood();
+        } else {
+            snake.pop();
+        }
+
+        draw();
+    }
+
+    function draw() {
+        // Pozadie podľa mapy
+        if (map === "classic") ctx.fillStyle = "#000";
+        if (map === "neon")    ctx.fillStyle = "#1a001a";
+        if (map === "dark")    ctx.fillStyle = "#050505";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // Jedlo – neon pink
+        ctx.fillStyle = "#ff00ea";
+        ctx.shadowColor = "#ff00ea";
+        ctx.shadowBlur = 22;
+        ctx.fillRect(food.x * tileSize, food.y * tileSize, tileSize, tileSize);
+
+        // Had – neon green
+        ctx.fillStyle = "#39ff14";
+        ctx.shadowColor = "#39ff14";
+        ctx.shadowBlur = 18;
+        for (const p of snake) {
+            ctx.fillRect(p.x * tileSize, p.y * tileSize, tileSize, tileSize);
+        }
+        ctx.shadowBlur = 0;
+    }
+
+    function gameOver() {
+        clearInterval(gameLoop);
+        canvas.style.animation = "glitch 0.45s";
+
+        setTimeout(() => {
+            alert("GAME OVER 💀  |  Skóre: " + score);
+            // reset stránky je najistejší kvôli naviazaniu listenerov
+            location.reload();
+        }, 420);
+    }
+</script>
+</body>
+</html>
+``
