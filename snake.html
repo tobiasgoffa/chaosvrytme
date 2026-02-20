@@ -392,6 +392,28 @@ window.addEventListener('scroll', () => {
     }
     lastScroll = current;
 });
+// ----- FIX: umožní spustiť hru na mobile -----
+startBtn.addEventListener("touchstart", (e) => {
+  e.preventDefault();
+  startGame();
+}, { passive: false });
+
+// ----- FIX: prvý dotyk na canvas spustí movement -----
+document.addEventListener("touchstart", (e) => {
+  const canvas = document.getElementById("gameCanvas");
+  if (!canvas) return;
+
+  if (!movementStarted && gameActive) {
+    movementStarted = true;
+    vx = 1;
+    vy = 0;
+
+    if (!scrollLocked) {
+      scrollLocked = true;
+      document.body.classList.add("no-scroll");
+    }
+  }
+}, { passive: false });
 </script>
 
 </body>
