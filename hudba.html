@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
 <header class="site-header">
     <div class="header-content">
         <div class="brand-row">
@@ -27,7 +26,6 @@
                 <a href="clenovia.html">Členovia</a>
                 <a href="hudba.html">Hudba</a>
                 <a href="index.html#koncerty">Koncerty</a>
-                <a href="snake.html">Snake</a>
                 <a href="index.html#kontakt">Kontakt</a>
             </nav>
         </div>
@@ -35,40 +33,43 @@
 </header>
 
 <main>
-    <h2>Naša hudba</h2>
-    <p>Pozri si náš album a počúvaj naše pesničky. Čistá punk energia!</p>
+    <section>
+        <h1>Naša hudba</h1>
+        <p>Počúvaj náš album a cítim energiu. Čistý punk bez kompromisov.</p>
 
-    <section class="album-section" aria-label="Album: Nejedz plastelínu">
-        <img
-            src="album_cover.jpg"
-            alt="Obal albumu Nejedz plastelínu"
-            class="album-cover"
-            width="400"
-            height="400"
-            loading="eager"
-        />
+        <div class="album-section" aria-label="Album: Nejedz plastelínu">
+            <img
+                src="album_cover.jpg"
+                alt="Obal albumu Nejedz plastelínu"
+                class="album-cover"
+                width="400"
+                height="400"
+                loading="eager"
+            />
 
-        <div class="tracklist">
-            <h3>Nejedz plastelínu</h3>
+            <div class="tracklist">
+                <h3>Nejedz plastelínu</h3>
 
-            <ul>
-                <li>Intro</li>
-                <li>MHD</li>
-                <li>Škola</li>
-                <li>Meskáči</li>
-                <li>Nebudeme Inakší</li>
-                <li>Kuriér</li>
-                <li>Zdravotná</li>
-                <li>Klaun</li>
-                <li>Kaktus</li>
-                <li>Supermarket</li>
-                <li>SBS</li>
-            </ul>
+                <ul>
+                    <li>Intro</li>
+                    <li>MHD</li>
+                    <li>Škola</li>
+                    <li>Meskáči</li>
+                    <li>Nebudeme Inakší</li>
+                    <li>Kuriér</li>
+                    <li>Nejedz plastelínu</li>
+                    <li>Laktózové inferno</li>
+                    <li>Zdravotná</li>
+                    <li>Klaun</li>
+                    <li>Kaktus</li>
+                    <li>Supermarket</li>
+                </ul>
 
-            <div class="social-links-text mt-2">
-                <a href="https://bandzone.cz/chaosvrytme?at=info&cd=1" target="_blank">
-                    BandZone
-                </a>
+                <div class="social-links-text mt-2">
+                    <a href="https://bandzone.cz/chaosvrytme?at=info&cd=1" target="_blank" rel="noopener noreferrer">
+                        Počúvaj na BandZone
+                    </a>
+                </div>
             </div>
         </div>
     </section>
@@ -77,18 +78,19 @@
 <footer>
     <div class="footer-inner">
         <p>© 2026 Chaos v Rytme – Punk z Martina</p>
-
-        <div class="social-links">
-            <a href="https://www.tiktok.com/@chaosvrytme" target="_blank"><img src="path1.svg" alt="TikTok"/></a>
-            <a href="https://instagram.com/chaosvrytme" target="_blank">
-                <svg width="32" height="32" viewBox="0 0 24 24">
-                    <rect x="4" y="4" width="16" height="16" rx="4" stroke="#7CFF00" stroke-width="1.5"/>
-                    <circle cx="12" cy="12" r="3.5" stroke="#ff0099" stroke-width="1.5"/>
+        <div class="social-links" aria-label="Sociálne siete">
+            <a href="https://www.tiktok.com/@chaosvrytme" target="_blank" rel="noopener noreferrer" aria-label="TikTok" title="TikTok">
+                <img src="path1.svg" alt="TikTok" width="32" height="32" />
+            </a>
+            <a href="https://instagram.com/chaosvrytme" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="4" y="4" width="16" height="16" rx="4" stroke="#7CFF00" stroke-width="1.5" fill="none"/>
+                    <circle cx="12" cy="12" r="3.5" stroke="#ff0099" stroke-width="1.5" fill="none"/>
                     <circle cx="16" cy="8" r="1" fill="#7CFF00"/>
                 </svg>
             </a>
-            <a href="https://bandzone.cz/chaosvrytme?at=info&cd=1" target="_blank">
-                <svg width="32" height="32" viewBox="0 0 24 24">
+            <a href="https://bandzone.cz/chaosvrytme?at=info&cd=1" target="_blank" rel="noopener noreferrer" aria-label="BandZone" title="BandZone">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <text x="2" y="20" font-size="20" font-weight="bold" fill="#ff0099" stroke="#7CFF00" stroke-width="0.5">BZ</text>
                 </svg>
             </a>
@@ -97,37 +99,41 @@
 </footer>
 
 <script>
-// HAMBURGER MENU
-const hamburger = document.getElementById('hamburger');
-const nav = document.getElementById('main-nav');
+    (() => {
 
-hamburger.addEventListener('click', () => {
-    const active = hamburger.classList.toggle('active');
-    nav.classList.toggle('active');
-    hamburger.setAttribute('aria-expanded', active);
-});
+    const hamburger = document.getElementById('hamburger');
+    const nav = document.getElementById('main-nav');
+    const header = document.querySelector('.site-header');
 
-nav.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => {
-        hamburger.classList.remove('active');
-        nav.classList.remove('active');
-        hamburger.setAttribute('aria-expanded', false);
-    });
-});
+    let lastScroll = 0;
 
-// HIDE HEADER ON SCROLL DOWN, SHOW ON SCROLL UP
-let lastScroll = 0;
-const header = document.querySelector('.site-header');
-
-window.addEventListener('scroll', () => {
-    const current = window.scrollY;
-    if (current > lastScroll && current > 80) {
-        header.classList.add('hide-header');
-    } else {
-        header.classList.remove('hide-header');
+    // Kliknutie na hamburger
+    if (hamburger) {
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            nav.classList.toggle('active');
+        });
     }
-    lastScroll = current;
-});
+
+    // Kliknutie na linky v navigácii
+    if (nav) {
+        const navLinks = nav.querySelectorAll('a');
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger?.classList.remove('active');
+                nav.classList.remove('active');
+            });
+        });
+    }
+
+    // Scroll už nerieši skrývanie headeru
+    window.addEventListener('scroll', () => {
+        lastScroll = window.scrollY;
+    });
+
+})();
+
 </script>
 
 </body>
