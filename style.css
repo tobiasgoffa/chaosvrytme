@@ -1,5 +1,5 @@
 /* =========================================================
-   CHAOS V RYTME – MODERN PUNK DESIGN
+   CHAOS V RYTME 
    Farby: neon green (#7CFF00), neon pink (#ff0099)
    Šriftov: moderna sans-serif s dopadom
    ========================================================= */
@@ -20,7 +20,7 @@
 
 html { 
     scroll-behavior: smooth;
-    scroll-padding-top: 80px;
+    scroll-padding-top: 90px;
 }
 
 body {
@@ -41,6 +41,9 @@ img {
     display: block;
 }
 
+/* =========================================================
+   BASE ELEMENTS
+   ========================================================= */
 a {
     color: var(--pink);
     text-decoration: none;
@@ -178,7 +181,9 @@ a:hover { color: var(--green); }
     box-shadow: 0 0 20px rgba(255, 0, 153, 0.5);
 }
 
-/* Navigácia */
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
 .main-nav {
     display: flex;
     gap: 8px;
@@ -216,6 +221,23 @@ a:hover { color: var(--green); }
     transition: var(--transition);
     transform: translateX(-50%);
 }
+
+.main-nav a:hover {
+    color: var(--green);
+    border-color: var(--green);
+    text-shadow: 0 0 12px var(--green);
+    background: rgba(124, 255, 0, 0.08);
+}
+
+.main-nav a:hover::after {
+    width: 80%;
+}
+
+.hamburger { display: none; }
+
+/* =========================================================
+   CONCERT LIST + OVERLAYS
+   ========================================================= */
 .concert-list {
     display: grid;
     gap: 32px;
@@ -247,6 +269,28 @@ a:hover { color: var(--green); }
     box-shadow: 0 0 12px rgba(255, 0, 153, 0.3);
 }
 
+.concert-poster.placeholder {
+    width: 180px;
+    height: 260px;
+    border-radius: var(--border-radius);
+    border: 2px dashed var(--pink);
+    background: rgba(255, 0, 153, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 12px;
+    box-shadow: 0 0 12px rgba(255, 0, 153, 0.3);
+}
+
+.concert-poster.placeholder span {
+    color: var(--pink);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
 .concert-info h3 {
     margin: 0 0 12px 0;
     color: var(--green);
@@ -276,39 +320,6 @@ a:hover { color: var(--green); }
     box-shadow: 0 0 16px var(--green);
 }
 
-.main-nav a:hover {
-    color: var(--green);
-    border-color: var(--green);
-    text-shadow: 0 0 12px var(--green);
-    background: rgba(124, 255, 0, 0.08);
-}
-
-.main-nav a:hover::after {
-    width: 80%;
-}
-
-.hamburger { display: none; }
-.concert-poster.placeholder {
-    width: 180px;
-    height: 260px;
-    border-radius: var(--border-radius);
-    border: 2px dashed var(--pink);
-    background: rgba(255, 0, 153, 0.1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 12px;
-    box-shadow: 0 0 12px rgba(255, 0, 153, 0.3);
-}
-
-.concert-poster.placeholder span {
-    color: var(--pink);
-    font-size: 0.9rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
 /* Fullscreen overlay */
 .poster-overlay {
     position: fixed;
@@ -343,7 +354,7 @@ main {
     max-width: 1200px;
     margin: 0 auto;
     padding: 24px 16px;
-    padding-top: 0px;
+    padding-top: 10px;
 }
 
 
@@ -356,10 +367,17 @@ h2, h3 {
 h1 {
     color: var(--green);
     font-size: clamp(2.4rem, 5vw, 3.6rem);
-    line-height: 1.2;
-    font-weight: 700;
-    letter-spacing: 0.5px;
+    line-height: 1;
+    font-weight: 800;
+    letter-spacing: 1.8px;
     margin-top: 0px;
+    text-transform: uppercase;
+    text-shadow:
+        0 0 6px rgba(124, 255, 0, 0.6),
+        0 0 12px rgba(255, 0, 153, 0.35),
+        2px 2px 0 rgba(255, 0, 153, 0.55),
+        -2px -2px 0 rgba(124, 255, 0, 0.25);
+    filter: drop-shadow(0 0 10px rgba(255, 0, 153, 0.22));
 }
 
 h2 {
@@ -725,7 +743,7 @@ footer p { color: #999; text-shadow: 0 0 6px var(--green); margin: 0; }
 .center { text-align: center; }
 
 /* =========================================================
-   RESPONSIVE
+   RESPONSIVE BREAKPOINTS
    ========================================================= */
 
 /* =========================================================
@@ -743,7 +761,7 @@ footer p { color: #999; text-shadow: 0 0 6px var(--green); margin: 0; }
 /* Tablety – 768px */
 @media (max-width: 768px) {
     main { padding: 40px 20px; 
-    padding-top: 0px; }
+    padding-top: 10px; }
     
     .album-section {
         flex-direction: column;
@@ -783,6 +801,10 @@ footer p { color: #999; text-shadow: 0 0 6px var(--green); margin: 0; }
 
 /* Mobily – 680px */
 @media (max-width: 680px) {
+    body {
+        font-size: 17px;
+    }
+
     .site-header {
         padding: 12px 16px;
         border-bottom: 2px solid var(--green);
@@ -888,7 +910,7 @@ footer p { color: #999; text-shadow: 0 0 6px var(--green); margin: 0; }
 
     main { 
         padding: 32px 16px;
-        padding-top: 0px;
+        padding-top: 10px;
     }
 
     h1 { 
@@ -911,8 +933,8 @@ footer p { color: #999; text-shadow: 0 0 6px var(--green); margin: 0; }
     }
     
     p {
-        font-size: clamp(0.9rem, 1.6vw, 1rem);
-        line-height: 1.7;
+        font-size: clamp(1rem, 2vw, 1.1rem);
+        line-height: 1.75;
     }
 
     ul, ol { 
@@ -923,7 +945,7 @@ footer p { color: #999; text-shadow: 0 0 6px var(--green); margin: 0; }
     li { 
         padding-left: 28px;
         margin-bottom: 12px;
-        font-size: clamp(0.9rem, 1.5vw, 0.95rem);
+        font-size: clamp(0.95rem, 1.8vw, 1.05rem);
     }
     
     li::before { 
@@ -993,6 +1015,10 @@ footer p { color: #999; text-shadow: 0 0 6px var(--green); margin: 0; }
 
 /* Veľmi malé mobily – 480px */
 @media (max-width: 480px) {
+    body {
+        font-size: 18px;
+    }
+
     .site-header {
         padding: 10px 12px;
     }
@@ -1009,7 +1035,7 @@ footer p { color: #999; text-shadow: 0 0 6px var(--green); margin: 0; }
 
     main { 
         padding: 24px 12px;
-        padding-top: 0px;
+        padding-top: 10px;
     }
 
     h1 { 
@@ -1034,13 +1060,13 @@ footer p { color: #999; text-shadow: 0 0 6px var(--green); margin: 0; }
     }
 
     p {
-        font-size: clamp(0.85rem, 1.4vw, 0.95rem);
+        font-size: clamp(1rem, 1.8vw, 1.05rem);
         margin-bottom: 16px;
     }
 
     li { 
         padding-left: 24px;
-        font-size: 0.9rem;
+        font-size: clamp(0.95rem, 1.6vw, 1rem);
     }
 
     .contact-form {
