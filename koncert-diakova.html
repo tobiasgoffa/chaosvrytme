@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Diaková – Deň obce | Chaos v Rytme</title>
+    <link rel="icon" href="logo.png" type="image/png" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header class="site-header">
+    <div class="header-content">
+        <div class="brand-row">
+            <a href="index.html" class="logo-link" aria-label="Chaos v Rytme – domov">
+                <img src="logo.png" alt="Logo Chaos v Rytme" class="logo-img" />
+            </a>
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="main-nav" id="main-nav">
+                <a href="index.html">Domov</a>
+                <a href="index.html#okapele">O kapele</a>
+                <a href="clenovia.html">Členovia</a>
+                <a href="hudba.html">Hudba</a>
+                <a href="index.html#koncerty">Koncerty</a>
+                <a href="index.html#kontakt">Kontakt</a>
+            </nav>
+        </div>
+    </div>
+</header>
+<main>
+    <section>
+        <h1>Diaková – Deň obce</h1>
+        <p>Pri tomto koncerte sme vystúpili 12. júla 2025 na obecných oslavách v Diakovej. Atmosféra bola drsná a energická.</p>
+    </section>
+    <section>
+        <div>
+            <img src="koncert-diakova1.jpg" alt="Plagát koncertu Deň obce Diaková" class="concert-poster">
+            <div class="concert-info">
+                <h3>Podrobnosti koncertu</h3>
+                <p><strong>Dátum:</strong> 12. júl 2025</p>
+                <p><strong>Miesto:</strong> Areál požiarnej zbrojnice, Diaková</p>
+                <p><strong>Čas:</strong> 18:00</p>
+                <p><strong>Status:</strong> Odohrané</p>
+                <p>Pre miestnych návštevníkov sme priniesli živelné vystúpenie plné punkového náboja a nekompromisných riffov.</p>
+            </div>
+        </div>
+    </section>
+    <section>
+        <p><a href="odohrane.html" class="past-concerts-btn">Späť na odohrané koncerty</a></p>
+    </section>
+</main>
+<footer>
+    <div class="footer-inner">
+        <p>© 2026 Chaos v Rytme – Punk z Martina</p>
+    </div>
+</footer>
+<script>
+(() => {
+    const hamburger = document.getElementById('hamburger');
+    const nav = document.getElementById('main-nav');
+
+    if (hamburger) {
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            nav.classList.toggle('active');
+        });
+    }
+
+    if (nav) {
+        const navLinks = nav.querySelectorAll('a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger?.classList.remove('active');
+                nav.classList.remove('active');
+            });
+        });
+    }
+})();
+</script>
+</body>
+</html>

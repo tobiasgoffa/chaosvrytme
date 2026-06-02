@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Martin – Včelín Music Bar | Chaos v Rytme</title>
+    <link rel="icon" href="logo.png" type="image/png" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header class="site-header">
+    <div class="header-content">
+        <div class="brand-row">
+            <a href="index.html" class="logo-link" aria-label="Chaos v Rytme – domov">
+                <img src="logo.png" alt="Logo Chaos v Rytme" class="logo-img" />
+            </a>
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="main-nav" id="main-nav">
+                <a href="index.html">Domov</a>
+                <a href="index.html#okapele">O kapele</a>
+                <a href="clenovia.html">Členovia</a>
+                <a href="hudba.html">Hudba</a>
+                <a href="index.html#koncerty">Koncerty</a>
+                <a href="index.html#kontakt">Kontakt</a>
+            </nav>
+        </div>
+    </div>
+</header>
+<main>
+    <section>
+        <h1>Martin – Včelín Music Bar</h1>
+        <p>Odohrali sme tento koncert 28. marca 2026 v klube Včelín Music Bar v Martine. Bolo to nahlas, čisto a s poriadnou energiou.</p>
+    </section>
+    <section>
+        <div>
+            <img src="koncert-vcelin.png" alt="Plagát koncertu Včelín Music Bar" class="concert-poster">
+            <div class="concert-info">
+                <h3>Podrobnosti koncertu</h3>
+                <p><strong>Dátum:</strong> 28. marec 2026</p>
+                <p><strong>Miesto:</strong> Včelín Music Bar, Martin</p>
+                <p><strong>Čas:</strong> 20:00</p>
+                <p><strong>Status:</strong> Odohrané</p>
+                <p>Koncert bol súčasťou série akcií pre miestne kapely. Na pódiu sme odpálili setlist plný tvrdých riffov a punkového výboja.</p>
+            </div>
+        </div>
+    </section>
+    <section>
+        <p><a href="odohrane.html" class="past-concerts-btn">Späť na odohrané koncerty</a></p>
+    </section>
+</main>
+<footer>
+    <div class="footer-inner">
+        <p>© 2026 Chaos v Rytme – Punk z Martina</p>
+    </div>
+</footer>
+<script>
+(() => {
+    const hamburger = document.getElementById('hamburger');
+    const nav = document.getElementById('main-nav');
+
+    if (hamburger) {
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            nav.classList.toggle('active');
+        });
+    }
+
+    if (nav) {
+        const navLinks = nav.querySelectorAll('a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger?.classList.remove('active');
+                nav.classList.remove('active');
+            });
+        });
+    }
+})();
+</script>
+</body>
+</html>
