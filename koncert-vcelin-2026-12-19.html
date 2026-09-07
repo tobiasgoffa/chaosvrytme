@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Martin – Retro Rock Pub | Chaos v Rytme</title>
+    <title>Martin – Včelín Music Bar | Chaos v Rytme</title>
     <link rel="icon" href="logo.png" type="image/png" />
     <link rel="stylesheet" href="style.css" />
-</head>
+    </head>
 <body>
 <header class="site-header">
     <div class="header-content">
@@ -32,22 +32,26 @@
 </header>
 <main>
     <section>
-        <h1>Martin – Retro Rock Pub</h1>
-        <p>Tento koncert sme už odohrali 5. júna 2026 v Retro Rock Pub Martin. Bolo to plné punkovej energie, chaosu a skvelého publika.</p>
+        <h1>Martin – Včelín Music Bar</h1>
+        <p>Prichádzame späť do Včelína 19. decembra 2026. Čas a plagát ešte upresníme. Prvá odhalená kapela s nami bude <strong>Brmbolce</strong>.</p>
     </section>
     <section>
-        <span class="poster-link" data-full="koncert-rockpub.png"><img src="koncert-rockpub.png" alt="Plagát koncertu Retro Rock Pub" class="concert-poster"></span>
-        <div class="concert-info">
-            <h3>Podrobnosti koncertu</h3>
-            <p><strong>Dátum:</strong> 5. jún 2026</p>
-            <p><strong>Miesto:</strong> Retro Rock Pub, Martin</p>
-            <p><strong>Čas:</strong> 20:00</p>
-            <p><strong>Status:</strong> Odohrané</p>
-            <p>Priprav sa na živé vystúpenie s tvrdými riffmi, haluzou a totálnym chaosom. Tešíme sa na vás všetkých na koncertnom večeri.</p>
+        <div>
+            <div class="concert-poster placeholder">
+                <span>Plagát ešte nemáme</span>
+            </div>
+            <div class="concert-info">
+                <h3>Podrobnosti koncertu</h3>
+                <p><strong>Dátum:</strong> 19. december 2026</p>
+                <p><strong>Miesto:</strong> Včelín Music Bar, Martin</p>
+                <p><strong>Čas:</strong> Ešte sa určuje</p>
+                <p><strong>Prvá odhalená kapela:</strong> Brmbolce</p>
+                <p><em>Plagát a presný čas zverejníme neskôr.</em></p>
+            </div>
         </div>
     </section>
     <section>
-        <p><a href="index.html" class="past-concerts-btn">Späť na koncerty</a></p>
+        <p><a href="index.html" class="past-concerts-btn">Späť na najbližšie koncerty</a></p>
     </section>
 </main>
 <footer>
@@ -67,12 +71,14 @@
 (() => {
     const hamburger = document.getElementById('hamburger');
     const nav = document.getElementById('main-nav');
+
     if (hamburger) {
         hamburger.addEventListener('click', () => {
             hamburger.classList.toggle('active');
             nav.classList.toggle('active');
         });
     }
+
     if (nav) {
         const navLinks = nav.querySelectorAll('a');
         navLinks.forEach(link => {
@@ -83,6 +89,8 @@
         });
     }
 })();
+</script>
+<script>
 document.addEventListener("click", function(e) {
     const link = e.target.closest(".poster-link");
     if (!link) return;
@@ -101,6 +109,7 @@ document.addEventListener("click", function(e) {
 
     overlay.addEventListener("click", () => overlay.remove());
 });
+</script>
 </script>
 </body>
 </html>

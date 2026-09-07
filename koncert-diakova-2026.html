@@ -36,13 +36,16 @@
         <p>Pripravovaný koncert 4. júla 2026 v Diakovej na oslave obce. Chaos v Rytme prinesie pravý punkový bordel pre všetkých.</p>
     </section>
     <section>
-        <div class="concert-info">
-            <h3>Podrobnosti koncertu</h3>
-            <p><strong>Dátum:</strong> 4. júl 2026</p>
-            <p><strong>Miesto:</strong> Areál požiarnej zbrojnice, Diaková</p>
-            <p><strong>Čas:</strong> Ešte sa určuje</p>
-            <p><strong>Status:</strong> Plánovaný</p>
-            <p>Čaká nás ďalší výbuch energie pod holým nebom. Príď si vychutnať náš surový štýl s kapelou, ktorá nevie hrať ticho.</p>
+        <div>
+            <span class="poster-link" data-full="plagatdiakova2026.jpg"><img src="plagatdiakova2026.jpg" alt="Plagát koncertu Deň obce Diaková" class="concert-poster"></span>
+            <div class="concert-info">
+                <h3>Podrobnosti koncertu</h3>
+                <p><strong>Dátum:</strong> 4. júl 2026</p>
+                <p><strong>Miesto:</strong> Areál požiarnej zbrojnice, Diaková</p>
+                <p><strong>Čas:</strong>17:00</p>
+                <p><strong>Status:</strong> Odohrané</p>
+                <p>Čaká nás ďalší výbuch energie pod holým nebom. Príď si vychutnať náš surový štýl s kapelou, ktorá nevie hrať ticho.</p>
+            </div>
         </div>
     </section>
     <section>
@@ -52,6 +55,14 @@
 <footer>
     <div class="footer-inner">
         <p>© 2026 Chaos v Rytme – Punk z Martina</p>
+        <div class="social-links">
+            <a href="https://www.youtube.com/@ChaosvRytme" target="_blank" rel="noopener noreferrer" aria-label="YouTube" title="YouTube">
+                <svg width="32" height="32" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="2" y="6" width="20" height="12" rx="3" fill="var(--pink)" stroke="var(--green)" stroke-width="2" />
+                    <path d="M10 9.5 L16 12 L10 14.5 Z" fill="var(--green)" />
+                </svg>
+            </a>
+        </div>
     </div>
 </footer>
 <script>
@@ -74,6 +85,24 @@
         });
     }
 })();
+document.addEventListener("click", function(e) {
+    const link = e.target.closest(".poster-link");
+    if (!link) return;
+
+    e.preventDefault();
+    const imgSrc = link.dataset.full;
+
+    const overlay = document.createElement("div");
+    overlay.className = "poster-overlay";
+
+    const img = document.createElement("img");
+    img.src = imgSrc;
+
+    overlay.appendChild(img);
+    document.body.appendChild(overlay);
+
+    overlay.addEventListener("click", () => overlay.remove());
+});
 </script>
 </body>
 </html>
