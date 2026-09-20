@@ -608,28 +608,21 @@ li:hover::before {
 .tracklist li {
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 10px 14px 10px 12px;
+    gap: 10px;
+    padding: 8px 0;
     font-size: clamp(0.95rem, 1.6vw, 1rem);
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(124, 255, 0, 0.12);
-    border-left: 3px solid var(--pink);
-    border-radius: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .track-number {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 2.1rem;
-    height: 2.1rem;
-    border-radius: 50%;
-    background: var(--green);
-    color: var(--bg);
-    font-weight: 800;
-    font-size: 0.78rem;
-    flex-shrink: 0;
-    box-shadow: 0 0 12px rgba(124, 255, 0, 0.3);
+    min-width: 1.8rem;
+    color: var(--pink);
+    font-weight: 700;
+    font-size: 0.82rem;
+    opacity: 0.9;
 }
 
 .track-name {
