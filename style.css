@@ -535,19 +535,6 @@ li {
     letter-spacing: 0.3px;
 }
 
-li::before {
-    content: '';
-    position: absolute;
-    left: 0; 
-    top: 6px;
-    width: 12px; 
-    height: 12px;
-    background: var(--pink);
-    box-shadow: 0 0 6px var(--pink);
-    clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 50% 75%, 18% 100%, 0% 38%);
-    transition: var(--transition);
-}
-
 li:hover::before {
     background: var(--green);
     box-shadow: 0 0 10px var(--green);
