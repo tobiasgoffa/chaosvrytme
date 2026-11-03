@@ -177,8 +177,7 @@ a:hover { color: var(--green); }
 }
 .logo-link:hover .logo-img { 
     transform: scale(1.08) rotate(-1deg);
-    filter: brightness(1.2) contrast(1.15);
-    box-shadow: 0 0 20px rgba(255, 0, 153, 0.5);
+    filter: brightness(1.2) contrast(1.15) drop-shadow(0 0 6px rgba(124, 255, 0, 0.45));
 }
 
 /* =========================================================
@@ -922,10 +921,6 @@ footer p { color: #999; text-shadow: 0 0 6px var(--green); margin: 0; }
         height: clamp(48px, 7vw, 72px);
     }
     
-    .logo-link:hover .logo-img { 
-        box-shadow: 0 0 12px rgba(255, 0, 153, 0.4);
-    }
-
     .hamburger {
         display: flex;
         flex-direction: column;

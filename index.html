@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chaos v Rytme – Punk z Martina</title>
-    <link rel="icon" href="logo.png" type="image/png" />
+    <link rel="icon" href="logo chaos.png" type="image/png" />
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -13,7 +13,7 @@
     <div class="header-content">
         <div class="brand-row">
             <a href="index.html" class="logo-link" aria-label="Chaos v Rytme – domov">
-                <img src="logo.png" alt="Logo Chaos v Rytme" class="logo-img" />
+                <img src="logo chaos.png" alt="Logo Chaos v Rytme" class="logo-img" />
             </a>
             <button class="hamburger" id="hamburger" aria-label="Menu">
                 <span></span>
@@ -36,32 +36,23 @@
     <section class="intro-section">
         <h1>Vitaj v chaose!</h1>
         <p class="intro-copy">
-            Chaos v Rytme je punk/hardcore kapela založená 20. marca 2022. Od začiatku hráme naplno – úprimne a
-            od srdca. Momentálne pracujeme hlavne na našom prvom albume s názvom „Nejedz plastelínu“ ale aj na
-            našom druhom albume, ktorého názov vám zatiaľ neprezradíme. Samozrejme ako začínajúca kapela hľadáme
-            koncerty, možnosti a príležitosti, kde sa môžeme zviditeľniť.
+            Sme punk/hardcore kapela z Martina. Hráme spolu od marca 2022 a momentálne dokončujeme náš prvý album
+            „Nejedz plastelínu“. Radi si zahráme aj na vašej akcii — stačí sa nám ozvať.
         </p>
     </section>
 
     <section>
         <h2 id="okapele" class="clasic-title">O kapele</h2>
         <p>
-            Sme <span class="highlight">Chaos v Rytme, punk/hardcore banda</span>, ktorá začala trieskať do strún a bicích <span class="highlight">20. marca 2022</span>. 
-            Odvtedy hráme s jasným cieľom – <span class="highlight">pustiť zo seba všetok bordel</span>, čo nosíme v hlave, a premeniť ho 
-            na <span class="highlight">energiu</span>, ktorú cíti každý pod pódiom.
+            Chaos v Rytme vznikol v Martine 20. marca 2022. Hráme punk/hardcore a skladáme pesničky, ktoré chceme
+            počuť sami — nahlas a bez zbytočných ozdôb.
         </p>
         <p>
-            Momentálne makáme na našom prvom albume s názvom <span class="highlight">„Nejedz plastelínu"</span> – pretože presne taký je 
-            punk: úprimný, trochu bláznivý a hlavne bez cenzúry. Chceme, aby naše songy zneli tak, ako ich 
-            cítime – <span class="highlight">surovo, nahlas a na plné gule</span>.
+            Pripravujeme prvý album <span class="highlight">„Nejedz plastelínu“</span>. Na <a href="koncert-vcelin-2026-12-19.html">koncerte vo Včelíne</a> ho
+            pokrstíme — tešíme sa na poriadnu spoločnú oslavu.
         </p>
         <p>
-            Keďže sme stále nová kapela, hľadáme koncerty a príležitosti <span class="highlight">rozbiť stage</span> kdekoľvek, kde je 
-            hlad po energii a hluku. Ak organizuješ akciu, ozvi sa nám – radi prinesieme <span class="highlight">chaos</span> aj k vám.
-        </p>
-        <p>
-            Ďakujeme každému, kto nás podporuje, sleduje a príde na koncert. Toto je len začiatok a 
-            veríme, že najväčší bordel ešte len príde.
+            Hľadáme ďalšie koncerty. Ak organizuješ akciu alebo nás chceš počuť naživo, napíš nám.
         </p>
     </section>
 
@@ -69,18 +60,17 @@
     <h2 id="koncerty" class="clasic-title">Najbližšie koncerty</h2>
 
     <div class="concert-list">
-        <div class="concert-card">
+        <div class="concert-card" data-concert-date="2027-08-07">
             <div class="concert-poster placeholder">
                 <span>Súkromná akcia</span>
             </div>
             <div class="concert-info">
                 <h3>Súkromná akcia</h3>
-                <p><strong>Dátum:</strong> 7. august 2026</p>
+                <p><strong>Dátum:</strong> 7. august 2027</p>
             </div>
         </div>
 
-        <!-- Nový koncert: Včelín 19. december 2026 -->
-        <a href="koncert-vcelin-2026-12-19.html" class="concert-card">
+        <a href="koncert-vcelin-2026-12-19.html" class="concert-card" data-concert-date="2026-12-19">
             <div class="concert-poster placeholder">
                 <span>Plagát ešte nemáme</span>
             </div>
@@ -89,11 +79,10 @@
                 <p><strong>Dátum:</strong> 19. december 2026</p>
                 <p><strong>Miesto:</strong> Včelín Music Bar, Martin</p>
                 <p><strong>Čas:</strong> Ešte sa určuje</p>
-                <p><strong>Prvá odhalená kapela:</strong> Brmbolce</p>
+                <p><strong>Kapely:</strong> Brmbolce, Katalizator, The Blots, Megsemmisítés</p>
+                <p><strong>Špeciálna udalosť:</strong> Krst debutového albumu „Nejedz plastelínu“</p>
             </div>
         </a>
-
-        <!-- Koncert 3 -->
 
     </div>
 
@@ -212,5 +201,6 @@ document.addEventListener("click", function(e) {
 });
 
 </script>
+<script src="koncerty.js"></script>
 </body>
 </html>
